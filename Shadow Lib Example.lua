@@ -1,45 +1,96 @@
-local library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ShaddowScripts/Main/main/Library"))()
 
-local Main = library:CreateWindow("Main","Crimson")
 
-local tab = Main:CreateTab("Cheats")
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local tab2 = Main:CreateTab("Misc")
+OrionLib:MakeNotification({
 
-tab:CreateButton("Hi",function()
+	Name = "Krypted Hub",	Content = "Welcome To Krypted Hub! Have Fun!",
 
-print("clicked")
+	Image = "rbxassetid://4483345998",
 
-end)
+	Time = 5
 
-tab:CreateToggle("Farm",function(a)
+})
 
-print(a)
+local Window = OrionLib:MakeWindow({Name = "Krypted Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "KryptedSaves"})
 
-end)
+--Player Tab--
 
-tab:CreateSlider("Wow",1,16,function(a)
+local PlayerTab = Window:MakeTab({
 
-print(a)
+	Name = "Player",
 
-end)
+	Icon = "rbxassetid://4483345998",
 
-tab:CreateCheckbox("Aimbot",function(a)
+	PremiumOnly = false
 
-print(a)
+})
 
-end)
+local PlayerSection = PlayerTab:AddSection({
 
-tab:CreateDropdown("Word",{"Sung","Jin","Woo"},function(a)
+	Name = "Player"
 
-print(a)
+})
 
-end)
+PlayerSection:AddSlider({
 
-tab2:CreateButton("Hello",function()
+	Name = "Walkspeed",
 
-print("clicked")
+	Min = 16,
 
-end)
+	Max = 100,
 
-tab:Show()
+	Default = 5,
+
+	Color = Color3.fromRGB(255,255,255),
+
+	Increment = 1,
+
+	ValueName = "Walkspeed",
+
+	Callback = function(Value)
+
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+
+	end    
+
+})
+
+--Player Tab End--
+
+--Settings Tab--
+
+local SettingsTab = Window:MakeTab({
+
+	Name = "Settings",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+local SettingsSection = SettingsTab:AddSection({
+
+	Name = "Settings"
+
+})
+
+SettingsSection:AddButton({
+
+	Name = "Destroy UI",
+
+	Callback = function()
+
+        OrionLib:Destroy()
+
+  	end    
+
+})
+
+--Settings End--
+
+OrionLib:Init() --UI Lib End
+
+
+
